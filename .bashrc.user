@@ -1,6 +1,11 @@
+###################################################
+## SHOPT options
 shopt -s globstar
 shopt -s autocd 
+###################################################
 
+###################################################
+## usefull aliases
 alias ..='cd ..'
 alias ...='cd ../..'
 
@@ -9,3 +14,29 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 alias update='sudo apt-get update && sudo apt-get upgrade'
+###################################################
+
+###################################################
+## find git branch and show it command prompt
+function find_git_branch {
+    local dir=. head
+    until [ "$dir" -ef / ]; do
+        if [ -f "$dir/.git/HEAD" ]; then
+            head=$(< "$dir/.git/HEAD")
+            if [[ $head == ref:\ refs/heads/* ]]; then
+                git_branch="(${head#*/*/})"
+            elif [[ $head != '' ]]; then
+                git_branch='(detached)'
+            else
+                git_branch='(unknown)'
+            fi
+            return
+        fi
+        dir="../$dir"
+    done
+   git_branch=' '
+}
+
+#PROMPT_COMMAND="find_git_branch; $PROMPT_COMMAND"
+#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;34m\]\w\[\033[01;36m\]$git_branch\[\033[00m\]\$: '
+###################################################
