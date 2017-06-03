@@ -53,3 +53,23 @@ set incsearch
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
+""""""""""""""""""""""""""""""
+" => Python specific
+""""""""""""""""""""""""""""""
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix |
+""""""""""""""""""""""""""""""
+" => Remove Trailing whitespace
+""""""""""""""""""""""""""""""
+:highlight ExtraWhitespace ctermbg=red guibg=red
+:match ExtraWhitespace /\s\+$/
+:autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+:autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+:autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+:autocmd BufWinLeave * call clearmatches()
