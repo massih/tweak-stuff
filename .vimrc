@@ -41,7 +41,8 @@ let g:ctrlp_cmd = 'CtrlP'
 " BackSpace works like normal editor
 set backspace=indent,eol,start
 " Clear last search highlighting
-map <Space> :noh<cr>
+"map <Space> :noh<cr> -> instead use below
+nnoremap <silent><Space> :nohlsearch<Bar>:echo<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
