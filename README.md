@@ -1,2 +1,5 @@
 # tweak-stuff
-.bashrc and .vimrc 
+- zsh configs
+- zsh agnoster theme
+- vimrc
+- tmux conf
