@@ -77,7 +77,7 @@ setup_all() {
   for f in "$script_dir"/files/*
   do
     echo "Moving $f to "
-    cp "$f" "$script_dir"/temp/."$f"
+    cp "$f" "$script_dir"/temp/."$(basename "$f")"
     msg "$f"
   done
 
